@@ -58,9 +58,9 @@ git clone https://github.com/Chi91/DevOps_Infrastructrue_Automation.git
 
 Teammember:
 
-Farhan Reise
-Olha Kharabet
-Annika Strooper
+Farhan Reise,
+Olha Kharabet,
+Annika Strooper,
 Chi Thien Pham
 
 
