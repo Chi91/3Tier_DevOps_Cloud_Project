@@ -38,11 +38,11 @@ AWS account and CLI
 Setup Instructions:
 
 Clone the repository:
-bash
 Code kopieren
 git clone https://github.com/Chi91/DevOps_Infrastructrue_Automation.git
 
 
-Contact
+Contact:
+
 For any queries or support, please open an issue in the respective repositories.
 
