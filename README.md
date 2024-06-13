@@ -7,8 +7,11 @@ Daily Schedule:
 To maintain a structured and productive workflow, we adhere to the following daily schedule:
 
 Daily Stand-up: 9:00 AM - 9:15 AM
+
 A brief meeting where each team member shares what they did yesterday, what they plan to do today, and any blockers they are facing.
+
 Sprint Review: 5:45 PM - 6:00 PM
+
 A daily review of the progress made, ensuring alignment with sprint goals and addressing any immediate issues.
 
 Scrum Framework
