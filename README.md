@@ -28,6 +28,7 @@ Development Stages:
 This project includes two stages:
 
 Main Stage: This is the production-ready stage where stable and tested code is deployed. It represents the live environment that end users interact with.
+
 Developer Stage: This stage is used for development and testing purposes. New features and updates are first pushed here, allowing developers to test and verify changes before they are merged into the main stage.
 
 Getting Started:
