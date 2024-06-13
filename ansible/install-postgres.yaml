@@ -1,0 +1,20 @@
+---
+- name: Set up docker apt repository
+  hosts: postgres
+  tasks:
+  - name: Apt update
+    apt:
+     pkg: 
+      - ca-certificates
+      - curl
+     update_cache: yes
+    become: yes
+  - name: Install docker
+    file: 
+     state: directory
+     path: /etc/apt/keyrings
+     mode: 0755
+     recurse: yes
+    become: yes
+
+
