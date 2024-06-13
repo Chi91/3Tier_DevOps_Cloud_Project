@@ -3,24 +3,30 @@ Overview:
 This sample application, originally developed by Saurabh Dhingra, demonstrates a three-tier architecture with a backend application built in .NET Core, a frontend application using HTML, CSS, and JavaScript, and a Postgres database.
 
 Repository Structure:
+
 Backend Application: The backend application code is available in the Basic3Tier.API repository.
 Frontend Application: The frontend application code is available in the Basic3Tier.UI repository.
 Project Objectives
 The main objective of this project is to enhance the existing applications by applying modern DevOps practices. The following tasks will be performed:
 
 Architectur: 
+
 ![project-1](https://github.com/Chi91/DevOps_Infrastructrue_Automation/assets/97454726/fd8335e7-0375-428c-99e0-fdb0c2d5626d)
 
+Project Objectives:
 
+The main objective of this project is to enhance the existing applications by applying modern DevOps practices. The following tasks will be performed:
 DevOps Practices: Implement and apply DevOps practices to manage the application lifecycle in a production environment.
 Automation: Automate provisioning, configuration, and infrastructure management using Terraform and Ansible.
 Containerization: Deploy and manage containerized applications to ensure scalability and consistency.
 Cloud Integration: Integrate the applications with AWS cloud services to leverage cloud-based features and scalability.
 
-Getting Started
+Getting Started:
+
 To get started with the project, clone the respective repositories and follow the setup instructions provided in each repository's README file.
 
-Prerequisites
+Prerequisites:
+
 .NET Core SDK
 Node.js and npm (for frontend development)
 PostgreSQL
@@ -29,7 +35,8 @@ Terraform
 Ansible
 AWS account and CLI
 
-Setup Instructions
+Setup Instructions:
+
 Clone the repository:
 bash
 Code kopieren
