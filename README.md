@@ -54,6 +54,9 @@ Code kopieren
 git clone https://github.com/Chi91/DevOps_Infrastructrue_Automation.git
 
 
+Teamflow: 
+
+ To read how the team is working, read the read.me on the developer branch
 
 
 Teammember:
