@@ -1,12 +1,12 @@
 resource "aws_vpc" "vpc_devops_infrastructure_automation" {
-  cidr_block = "192.168.0.0/16"
+  cidr_block = var.vpc_cidr
   tags = {
-    "Name" = "vpc_devops_infrastructure_automation"
+    Name = var.vpc_name
   }
 
 }
 
-resource "aws_security_group" "default_sg_devops_infrstructure_automation" {
+resource "aws_security_group" "default_sg_devops_infrastructure_automation" {
   name        = "allow_HTTP_SSH"
   description = "allow HTTP and SSH inboud traffic and all outbound traffic"
   vpc_id      = aws_vpc.vpc_devops_infrastructure_automation.id
@@ -40,7 +40,7 @@ resource "aws_security_group" "default_sg_devops_infrstructure_automation" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "default_outbound_rule"
+    Name = var.default_security_group_name
   }
 
 }
