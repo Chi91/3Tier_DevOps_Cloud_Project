@@ -35,11 +35,15 @@ Terraform
 Ansible
 AWS account and CLI
 
+
+
 Setup Instructions:
 
 Clone the repository:
 Code kopieren
 git clone https://github.com/Chi91/DevOps_Infrastructrue_Automation.git
+
+
 
 
 Contact:
