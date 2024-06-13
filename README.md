@@ -56,7 +56,13 @@ git clone https://github.com/Chi91/DevOps_Infrastructrue_Automation.git
 
 
 
-Contact:
+Teammember:
 
-For any queries or support, please open an issue in the respective repositories.
+Farhan Reise
+Olha Kharabet
+Annika Strooper
+Chi Thien Pham
+
+
+
 
