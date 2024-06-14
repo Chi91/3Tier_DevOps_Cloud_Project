@@ -1,30 +1,52 @@
-vpc_name = "vpc_devops_infrastructure_automation_test"
 vpc_cidr = "192.168.0.0/16"
-
-subnets = {
-
-  private_subnet_backend = {
-    map_public_ip_on_launch = true  # //TODO: Should be false in the future
-    cidr_block              = "192.168.2.0/24"
-    availability_zone       = "eu-central-1b"
-    name                    = "private_subnet_backend"
-  }
-}
-
-route_table_name = "route_table_backend"
-default_security_group_name = "default_security_group_name"
-
-private_subnet_backend_cidr = "192.168.2.0/24"
+region   = "eu-central-1"
 
 instances = {
+    loadbalancer = {
+    index = 0
+    public_ip = true
+    availability_zone           = "eu-central-1c"
+  }
+  frontend = {
+    index = 1
+    public_ip = false
+    availability_zone           = "eu-central-1a"
+  }
+  backend = {
+    index = 2 
+    public_ip = false
+    availability_zone           = "eu-central-1b"
+  }
+  postgres = {
+    index = 3
+    public_ip = false
+    availability_zone           = "eu-central-1b"
+  }
+}
+ssh_key = "my-key"
 
-    backend = {
-      availability_zone           = "eu-central-1b"
-      associate_public_ip_address = true
-      ec2_name                    = "ec2-backend"
+inbound_rules = {
+  HTTP = {
+    description = "Allow all HTTP traffic"
+    from_port   = "80"
+    to_port     = "80"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  SSH = {
+    description = "Allow all SSH traffic"
+    from_port   = "22"
+    to_port     = "22"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  local = {
+    description = "Allow all local traffic"
+    from_port   = "0"
+    to_port     = "0"
+    protocol    = "-1"
+    cidr_blocks = ["192.168.0.0/16"]
   }
 }
 
-ami_id        = "ami-01e444924a2233b07"
-instance_type = "t2.micro"
-ssh_key_name  = "olha-aws-eu-central-1-ssh-key"
+
