@@ -15,7 +15,7 @@ variable "vpc_cidr" {
 }
 
 variable "instances" {
-  type = map(object({ index = number, public_ip = bool, availability_zone = string }))
+  type = map(object({ public_ip = bool, availability_zone = string }))
 }
 
 variable "ssh_key" {

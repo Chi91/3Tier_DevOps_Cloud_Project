@@ -3,22 +3,18 @@ region   = "eu-central-1"
 
 instances = {
   loadbalancer = {
-    index             = 0
     public_ip         = true
     availability_zone = "eu-central-1c"
   }
   frontend = {
-    index             = 1
     public_ip         = false
     availability_zone = "eu-central-1a"
   }
   backend = {
-    index             = 2
     public_ip         = false
     availability_zone = "eu-central-1b"
   }
   postgres = {
-    index             = 3
     public_ip         = false
     availability_zone = "eu-central-1b"
   }

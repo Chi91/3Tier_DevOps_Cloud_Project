@@ -8,10 +8,10 @@ resource "aws_route_table" "public_route_table" {
 }
 
 resource "aws_route_table_association" "associate_subnets" {
-    for_each = var.instances
-    subnet_id      = aws_subnet.subnet[each.key].id
-    route_table_id = aws_route_table.public_route_table.id
-    
+  for_each       = var.instances
+  subnet_id      = aws_subnet.subnet[each.key].id
+  route_table_id = aws_route_table.public_route_table.id
+
 }
 
 resource "aws_internet_gateway" "igw" {
