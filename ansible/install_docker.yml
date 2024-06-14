@@ -1,0 +1,55 @@
+---
+- name: Install Docker
+  hosts: all
+  become: true
+  tasks:
+    - name: Update all packages to their latest version
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+
+    - name: Install required packages
+      ansible.builtin.apt:
+        pkg:
+          - ca-certificates
+          - curl
+        state: latest
+
+    - name: Create directory for apt keyrings
+      ansible.builtin.command: "install -m 0755 -d /etc/apt/keyrings"
+
+    - name: Download Docker's official GPG key
+      ansible.builtin.command: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc"
+
+    - name: Change the access to the GPG key
+      ansible.builtin.command: "chmod a+r /etc/apt/keyrings/docker.asc"
+
+    - name: Add Docker repository to Apt sources
+      ansible.builtin.shell: |
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    - name: Run the equivalent of "apt-get update" as a separate step
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install Docker CE, CLI, and other plugins
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: yes
+
+    - name: Ensure Docker service is started
+      ansible.builtin.service:
+        name: docker
+        state: started
+
+  handlers:
+    - name: restart apache2
+      ansible.builtin.service:
+        name: docker
+        state: restarted
