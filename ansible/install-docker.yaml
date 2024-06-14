@@ -1,0 +1,47 @@
+- name: Install docker
+  hosts:
+  tasks:
+      - name: Apt update 2
+      gather_facts: true
+      ansible.builtin.deb822_repository:
+        name: docker
+        types: deb
+        uris: https://download.docker.com/linux/ubuntu
+        suites: noble
+        components: stable
+        architecture: '{{ ansible_distribution_release }}'
+        signed_by: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+        enabled: true
+      become: true
+    - name: Add docker respository using key from URL
+      deb822_repository:
+        name: docker
+        types: deb
+        uris: https://download.docker.com/linux/ubuntu
+        suites: noble
+        components: stable
+        signed_by: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+        enabled: true
+      become: true
+  - name: Install docker
+    command: 
+     cmd: chmod a+r /etc/apt/keyrings/docker.asc
+    become: yes
+- name: Install docker
+  hosts: postgres
+  tasks:
+  - name: Install docker
+    apt:
+     pkg:
+     - docker-ce 
+     - docker-ce-cli 
+     - containerd.io 
+     - docker-buildx-plugin 
+     - docker-compose-plugin
+    become: yes
+  - name:
+    service:
+     name: docker
+     state: present 
