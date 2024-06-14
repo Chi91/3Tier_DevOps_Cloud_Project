@@ -12,9 +12,12 @@ resource "aws_instance" "Loadbalancer" {
 
 
 }
+
 resource "aws_subnet" "loadbalancer-subnet" {
   vpc_id     = aws_vpc.vpc_devops_infrastructure_automation.id
   cidr_block = "192.168.0.0/24"
+# instances launched in the subnet are assigned a public IP address automatically. true ensures that any EC2 instance launched in this subnet will be assigned a public IP address upon creation
+  map_public_ip_on_launch = true      
   tags = {
     Name = "loadbalancer-subnet"
   }
