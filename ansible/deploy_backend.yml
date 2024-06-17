@@ -1,0 +1,19 @@
+---
+# playbook for fetch docker image from dockerhub repro & deploy docker container (backend)
+- name: Deploy backend container
+  hosts: backend
+  become: true
+  tasks:
+    - name: Pull Docker Backend-Image
+      docker_image: 
+        name: "chi91/dotnet-image"
+        source: "pull"
+        tag: "latest"
+
+    - name: Start docker container backend
+      docker_container:
+        name: "backend-container"
+        image: "chi91/dotnet-image"
+        state: started
+    #    networks:
+    #      - name: "auto-infra-project1-network"
