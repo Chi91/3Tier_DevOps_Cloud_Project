@@ -1,0 +1,19 @@
+---
+# playbook for fetch docker image from dockerhub repro & deploy docker container (frontend)
+- name: Deploy frontend container
+  hosts: frontend
+  become: true
+  tasks:
+    - name: Pull Docker Frontend-Image
+      docker_image:
+        name: "chi91/frontend-image"
+        source: "pull"
+        tag: "latest"
+    
+    - name: Start docker container frontend
+      docker_container:
+        name: "frontend-container"
+        image: "chi91/frontend-image"
+        state: started
+   #     networks:
+   #       - name: "auto-infra-project1-network"
