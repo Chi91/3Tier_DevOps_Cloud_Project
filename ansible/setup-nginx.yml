@@ -1,0 +1,11 @@
+---
+- name: Setup nginx server
+  hosts: loadbalancer
+  become: true
+  tasks:
+    - name: Upload loadbalancer config
+      template: src=loadbalancer.tpl dest=/etc/nginx/conf.d/loadbalancer.conf
+      notify: restart nginx
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted

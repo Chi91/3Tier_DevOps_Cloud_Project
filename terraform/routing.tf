@@ -7,9 +7,8 @@ resource "aws_route_table" "public_route_table" {
   }
 }
 
-resource "aws_route_table_association" "associate_subnets" {
-  for_each       = var.instances
-  subnet_id      = aws_subnet.subnet[each.key].id
+resource "aws_route_table_association" "associate_public_subnets" {
+  subnet_id      = aws_subnet.subnet["loadbalancer"].id
   route_table_id = aws_route_table.public_route_table.id
 
 }
