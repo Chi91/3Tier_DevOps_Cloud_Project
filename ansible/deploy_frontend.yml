@@ -15,4 +15,5 @@
         name: "frontend-container"
         image: "chi91/frontend-image"
         state: started
-        ports: "80:80"
+        ports: 
+        - "80:80"

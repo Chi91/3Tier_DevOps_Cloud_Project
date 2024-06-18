@@ -1,0 +1,41 @@
+---
+- name: Deploy postgres container
+  hosts: databases
+  become: true
+  tasks:
+    - name: Pull PostgreSQL image
+      docker_image: 
+        name: "postgres"
+        tag: "latest"
+        source: "pull"
+
+    - name: Start PostgreSql Container 
+      docker_container:
+        name: postgres_db
+        image: "postgres"
+        state: started
+        env:
+          POSTGRES_DB: "basic3tier"
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "admin123"
+        ports: 
+          - 5432
+        volumes:
+          - "/pgdata:/var/lib/postgresql/data"
+    
+    - name: Pull pgadmin file
+      docker_image:
+        name: "dpage/pgadmin4"
+        source: "pull"
+        tag: "latest"
+
+    - name: Start pgmain Container 
+      docker_container:
+        name: pgamdin
+        image: "dpage/pgadmin4"
+        state: started
+        env:
+          PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+          PGADMIN_DEFAULT_PASSWORD: "admin123"
+        ports: 
+          - 8080:80
