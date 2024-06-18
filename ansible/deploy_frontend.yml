@@ -6,14 +6,18 @@
   tasks:
     - name: Pull Docker Frontend-Image
       docker_image:
-        name: "chi91/frontend-image"
+        name: "chi91/frontend4"
         source: "pull"
         tag: "latest"
     
     - name: Start docker container frontend
       docker_container:
         name: "frontend-container"
-        image: "chi91/frontend-image"
+        image: "chi91/frontend4"
         state: started
         ports: 
         - "80:80"
+        env: 
+          BACKEND_IP: "3.77.36.80"
+    
+          
