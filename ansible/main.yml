@@ -2,3 +2,4 @@
 - import_playbook: deploy_frontend.yml
 - import_playbook: deploy_backend.yml
 - import_playbook: deploy_loadbalancer.yml
+- import_playbook: deploy_database.yml

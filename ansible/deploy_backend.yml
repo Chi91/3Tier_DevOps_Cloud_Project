@@ -6,12 +6,20 @@
   tasks:
     - name: Pull Docker Backend-Image
       docker_image: 
-        name: "chi91/dotnet-image"
+        name: "chi91/chi91"
         source: "pull"
         tag: "latest"
 
     - name: Start docker container backend
       docker_container:
         name: "backend-container"
-        image: "chi91/dotnet-image"
+        image: "chi91/chi91"
         state: started
+        env: 
+          POSTGRES_HOST: "192.168.3.103"
+          POSTGRES_DB: "basic3tier"
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "admin123"
+          POSTGRES_PORT: "5432"  
+        ports: "80:80"
+      
