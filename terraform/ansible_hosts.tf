@@ -9,21 +9,14 @@ load_balancer:
 webservers:
   hosts: 
     frontend: 
-      ansible_host: ${aws_instance.EC2_instance["frontend"].private_ip}
+      ansible_host: ${aws_instance.EC2_instance["frontend"].public_ip}
     backend:
-      ansible_host: ${aws_instance.EC2_instance["backend"].private_ip}
+      ansible_host: ${aws_instance.EC2_instance["backend"].public_ip}
 
 databases:
   hosts:
     postgres: 
-      ansible_host: ${aws_instance.EC2_instance["postgres"].private_ip}
-
-private:
-  children:
-    webservers:
-    databases:
-  vars:
-    ansible_ssh_common_args: '-o ProxyCommand="ssh -i ../my-key.pem ubuntu@${aws_instance.EC2_instance["loadbalancer"].public_ip} nc %h 22"'
+      ansible_host: ${aws_instance.EC2_instance["postgres"].public_ip}
 
 all:
   vars:

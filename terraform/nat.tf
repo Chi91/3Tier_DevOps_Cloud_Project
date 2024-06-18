@@ -1,4 +1,4 @@
-resource "aws_route_table" "private_route_table" {
+/*resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc_devops_infrastructure_automation.id
 
   route {
@@ -6,14 +6,16 @@ resource "aws_route_table" "private_route_table" {
     gateway_id = aws_nat_gateway.nat.id
   }
 }
-
+*/
 resource "aws_route_table_association" "associate_private_subnets" {
-  for_each       = toset(["frontend", "backend", "postgres"])
+  for_each       = toset(["frontend", "backend", "postgres", "loadbalancer"])
   subnet_id      = aws_subnet.subnet[each.key].id
-  route_table_id = aws_route_table.private_route_table.id
+  route_table_id = aws_route_table.public_route_table.id
+  # route_table_id = aws_route_table.private_route_table.id
 
 }
 
+/*
 resource "aws_eip" "eip" {
   tags = {
     Name = "eip-${var.project_name}"
@@ -27,3 +29,4 @@ resource "aws_nat_gateway" "nat" {
     Name = "nat-${var.project_name}"
   }
 }
+*/

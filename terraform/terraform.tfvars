@@ -7,15 +7,15 @@ instances = {
     availability_zone = "eu-central-1c"
   }
   frontend = {
-    public_ip         = false
+    public_ip         = true
     availability_zone = "eu-central-1a"
   }
   backend = {
-    public_ip         = false
+    public_ip         = true
     availability_zone = "eu-central-1b"
   }
   postgres = {
-    public_ip         = false
+    public_ip         = true
     availability_zone = "eu-central-1b"
   }
 }
@@ -33,6 +33,13 @@ inbound_rules = {
     description = "Allow all SSH traffic"
     from_port   = "22"
     to_port     = "22"
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+    local = {
+    description = "Allow db traffic"
+    from_port   = "5432"
+    to_port     = "5432"
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

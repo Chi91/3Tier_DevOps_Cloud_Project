@@ -7,12 +7,13 @@ resource "aws_route_table" "public_route_table" {
   }
 }
 
+/*
 resource "aws_route_table_association" "associate_public_subnets" {
   subnet_id      = aws_subnet.subnet["loadbalancer"].id
   route_table_id = aws_route_table.public_route_table.id
-
+  
 }
-
+*/
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc_devops_infrastructure_automation.id
   tags = {
