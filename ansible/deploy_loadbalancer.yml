@@ -14,7 +14,6 @@
         src: loadbalancer.tpl 
         dest: /etc/nginx/conf.d/loadbalancer.conf
       notify: restart nginx
-
   handlers:
     - name: restart nginx
       service: 
