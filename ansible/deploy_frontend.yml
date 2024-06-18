@@ -15,5 +15,5 @@
         name: "frontend-container"
         image: "chi91/frontend-image"
         state: started
-   #     networks:
-   #       - name: "auto-infra-project1-network"
+        ports: 
+        - "80:80"

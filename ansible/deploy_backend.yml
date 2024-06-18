@@ -15,5 +15,3 @@
         name: "backend-container"
         image: "chi91/dotnet-image"
         state: started
-    #    networks:
-    #      - name: "auto-infra-project1-network"
