@@ -18,10 +18,12 @@
           POSTGRES_DB: "basic3tier"
           POSTGRES_USER: "postgres"
           POSTGRES_PASSWORD: "admin123"
+          POSTGRES_PORT: "5432"
         ports: 
           - 5432
         volumes:
           - "/pgdata:/var/lib/postgresql/data"
+        restart: true
     
     - name: Pull pgadmin file
       docker_image:
