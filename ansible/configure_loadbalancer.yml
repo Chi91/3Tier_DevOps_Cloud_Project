@@ -1,21 +1,24 @@
 ---
-- name: Setup nginx server
+- name: Configure Ubuntu as a load balancer with Nginx
   hosts: loadbalancer
   become: true
   tasks:
-    - name: Install nginx
-      apt: 
+    - name: Ensure Nginx is installed
+      ansible.builtin.apt:
         name: nginx
         state: present
         update_cache: true
         
     - name: Upload loadbalancer config
-      template: 
+      ansible.builtin.template:
         src: loadbalancer.tpl 
-        dest: /etc/nginx/conf.d/loadbalancer.conf
+        dest: /etc/nginx/sites-available/default
+        mode: 0755
       notify: restart nginx
+
   handlers:
     - name: restart nginx
-      service: 
+      ansible.builtin.service:
         name: nginx 
         state: restarted
+        enabled: yes

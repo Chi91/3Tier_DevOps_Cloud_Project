@@ -1,15 +1,15 @@
 upstream frontend {
-    server {{ hostvars["frontend"].ansible_host }};
+    server http://{{ hostvars["frontend"].ansible_host }};
 }
 
 upstream backend {
-    server {{ hostvars["backend"].ansible_host }};
+    server http://{{ hostvars["backend"].ansible_host }};
 }
 
 server {
     listen 80;
 
-    server_name {{ hostvars["loadbalancer"].ansible_host }};
+    server_name http://{{ hostvars["loadbalancer"].ansible_host }};
 
 # URL path followed with / or /frontend will go into this block 
     location ~^(/|/frontend) {

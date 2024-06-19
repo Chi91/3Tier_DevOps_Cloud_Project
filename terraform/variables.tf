@@ -28,4 +28,13 @@ variable "inbound_rules" {
   type = map(object({ from_port = number, to_port = number, protocol = string, cidr_blocks = tuple([string]) }))
 }
 
+variable "ami_id" {
+  description = "AMI id"
+  type        = string
+}
+
+variable "instance_type" {
+  default = "Instance type (i.g. t2micro)"
+  type    = string
+}
 

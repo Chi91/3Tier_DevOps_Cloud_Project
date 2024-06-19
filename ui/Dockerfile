@@ -12,4 +12,7 @@ EXPOSE 80
 # Expose port 443 for https
 EXPOSE 443
 
-#Do not define Entrypoint or CMD - using default Entrypoint
+# Set up a volume for the HTML files (useful for development purposes)
+VOLUME ["/var/lib/ui/data"]
+
+# No need to specify CMD as the base nginx image already defines it

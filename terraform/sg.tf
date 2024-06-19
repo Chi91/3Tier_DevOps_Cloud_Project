@@ -23,5 +23,4 @@ resource "aws_security_group" "default_sg" {
   tags = {
     Name = "default_sg"
   }
-
 }

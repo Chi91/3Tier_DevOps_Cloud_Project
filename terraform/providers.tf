@@ -5,15 +5,15 @@ terraform {
       version = "5.53.0"
     }
   }
-  backend "s3" {
-    bucket = "eu-central-remote-state"
-    key    = "terraform.tfstate"
-    region = "eu-central-1"
 
-  }
+  #   backend "s3" {
+  #     bucket = "eu-west-remote-state"
+  #     key    = "terraform.tfstate"
+  #     region = "eu-west-2"
+  #   }
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region = "eu-west-2"
 
 }

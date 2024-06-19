@@ -31,3 +31,4 @@ override.tf.json
 .idea
 database/pgdata/*
 !database/postgres-data
+my-key.pem

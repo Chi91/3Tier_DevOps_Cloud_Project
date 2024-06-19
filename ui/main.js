@@ -5,7 +5,7 @@ $(document).ready(function () {
     let activeUser = {};
     // Function to get users from 'api/user' endpoint and display them in the table
     function getUsers() {
-        $.get(`${baseUrl}api/user`, function (response) {
+        $.get(`${baseUrl}/api/user`, function (response) {
             // Clear the table body
             $('#userTableBody').empty();
 
@@ -51,7 +51,7 @@ $(document).ready(function () {
         showMessage('Failed to save user', 'error');
     }
 
-    // Function to post user data to 'api/user' endpoint
+    // Function to post user data to '/api/user' endpoint
     function saveUser() {
         const name = $('#name').val();
         const email = $('#email').val();
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
         if (activeUser.id > 0) {
             $.ajax({
-                url: `${baseUrl}api/user/${activeUser.id}`,
+                url: `${baseUrl}/api/user/${activeUser.id}`,
                 type: "PUT",
                 data: JSON.stringify({ id: activeUser.id, name: name, email: email, age: age, address: address }),
                 dataType: "json",
@@ -70,7 +70,7 @@ $(document).ready(function () {
             });
         } else {
             $.ajax({
-                url: `${baseUrl}api/user`,
+                url: `${baseUrl}/api/user`,
                 type: "POST",
                 data: JSON.stringify({ id: 0, name: name, email: email, age: age, address: address }),
                 dataType: "json",
@@ -98,7 +98,7 @@ $(document).ready(function () {
     function deleteUser(id) {
         if (confirm('Are you sure you want to delete this user?')) {
             $.ajax({
-                url: `${baseUrl}api/user/${id}`,
+                url: `${baseUrl}/api/user/${id}`,
                 type: 'DELETE',
                 success: function () {
                     // Display a success message
@@ -153,8 +153,6 @@ $(document).ready(function () {
         deleteUser(userId);
     });
 
-    
-    
     async function getText(file) {
         let myObject = await fetch(file);
         let myText = await myObject.text();
@@ -163,5 +161,5 @@ $(document).ready(function () {
         // Initial load of users
         getUsers();
     }
-    getText('./configs/config.json');
+    getText('./config/config.json');
 });

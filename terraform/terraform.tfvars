@@ -1,22 +1,22 @@
 vpc_cidr = "192.168.0.0/16"
-region   = "eu-central-1"
+region   = "eu-west-2"
 
 instances = {
   loadbalancer = {
     public_ip         = true
-    availability_zone = "eu-central-1c"
+    availability_zone = "eu-west-2c"
   }
   frontend = {
     public_ip         = false
-    availability_zone = "eu-central-1a"
+    availability_zone = "eu-west-2a"
   }
   backend = {
     public_ip         = false
-    availability_zone = "eu-central-1b"
+    availability_zone = "eu-west-2b"
   }
   postgres = {
     public_ip         = false
-    availability_zone = "eu-central-1b"
+    availability_zone = "eu-west-2b"
   }
 }
 ssh_key = "my-key"
@@ -45,4 +45,6 @@ inbound_rules = {
   }
 }
 
-
+# Canonical, Ubuntu, 24.04 LTS, for 'eu-west-2'
+ami_id        = "ami-053a617c6207ecc7b"
+instance_type = "t2.micro"

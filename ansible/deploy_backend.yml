@@ -1,25 +1,36 @@
 ---
-# playbook for fetch docker image from dockerhub repro & deploy docker container (backend)
+# playbook for fetch docker image from dockerhub repo & deploy docker container (backend)
 - name: Deploy backend container
   hosts: backend
   become: true
   tasks:
     - name: Pull Docker Backend-Image
       docker_image: 
-        name: "chi91/chi91"
+        name: "kholha/backend-dotnet-app"
         source: "pull"
         tag: "latest"
 
     - name: Start docker container backend
       docker_container:
         name: "backend-container"
-        image: "chi91/chi91"
+        image: "kholha/backend-dotnet-app"
+        image_name_mismatch: "recreate"
         state: started
         env: 
-          POSTGRES_HOST: "192.168.3.103"
+          POSTGRES_HOST: "{{ hostvars['postgres'].ansible_host }}"
           POSTGRES_DB: "basic3tier"
           POSTGRES_USER: "postgres"
           POSTGRES_PASSWORD: "admin123"
           POSTGRES_PORT: "5432"  
         ports: "80:80"
-      
+#        volumes: /app:/app
+        recreate: yes
+
+    - name: Set DB creds in app config file
+      command: "{{ item }}"
+      loop:
+        - docker exec -d backend-container /bin/bash -c "sed -i \"s#\${POSTGRES_HOST}#${POSTGRES_HOST}#g\" /app/appsettings.json"
+        - docker exec -d backend-container /bin/bash -c "sed -i \"s#\${POSTGRES_DB}#${POSTGRES_DB}#g\" /app/appsettings.json"
+        - docker exec -d backend-container /bin/bash -c "sed -i \"s#\${POSTGRES_USER}#${POSTGRES_USER}#g\" /app/appsettings.json"
+        - docker exec -d backend-container /bin/bash -c "sed -i \"s#\${POSTGRES_PASSWORD}#${POSTGRES_PASSWORD}#g\" /app/appsettings.json"
+        - docker exec -d backend-container /bin/bash -c "sed -i \"s#\${POSTGRES_PORT}#${POSTGRES_PORT}#g\" /app/appsettings.json"

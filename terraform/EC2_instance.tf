@@ -1,8 +1,8 @@
 resource "aws_instance" "EC2_instance" {
   for_each = var.instances
 
-  ami                         = "ami-01e444924a2233b07" //can do with data
-  instance_type               = "t2.micro"
+  ami                         = var.ami_id
+  instance_type               = var.instance_type
   key_name                    = var.ssh_key
   associate_public_ip_address = var.instances[each.key].public_ip
   availability_zone           = var.instances[each.key].availability_zone

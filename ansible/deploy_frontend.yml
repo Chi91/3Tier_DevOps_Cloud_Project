@@ -1,23 +1,30 @@
 ---
-# playbook for fetch docker image from dockerhub repro & deploy docker container (frontend)
+# playbook for fetch docker image from dockerhub repo & deploy docker container (frontend)
 - name: Deploy frontend container
   hosts: frontend
   become: true
   tasks:
     - name: Pull Docker Frontend-Image
       docker_image:
-        name: "chi91/frontend4"
+        name: "kholha/frontend-js-app"
         source: "pull"
+        force_source: yes
         tag: "latest"
     
     - name: Start docker container frontend
       docker_container:
         name: "frontend-container"
-        image: "chi91/frontend4"
+        image: "kholha/frontend-js-app:latest"
+        image_name_mismatch: "recreate"
         state: started
         ports: 
         - "80:80"
+#        volumes: /usr/share/nginx/html/config:/usr/share/nginx/html/config
+#        keep_volumes: no
+        recreate: yes
         env: 
-          BACKEND_IP: "3.77.36.80"
-    
-          
+          BACKEND_IP: "{{ hostvars['loadbalancer'].ansible_host }}"
+
+    - name: Set backend IP
+#      command: /bin/bash -c "sed -i \"s#\${BACKEND_IP}#${BACKEND_IP}#g\" /usr/share/nginx/html/config/config.json"
+      command: docker exec -d frontend-container /bin/bash -c "sed -i \"s#\${BACKEND_IP}#${BACKEND_IP}#g\" /usr/share/nginx/html/config/config.json"
