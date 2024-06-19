@@ -23,3 +23,6 @@ Sprint Retrospective: After the sprint review, we reflect on the sprint to ident
 Tools
 
 Miro Board: Used for managing our Kanban board and backlog, providing a visual and interactive platform for tracking progress and prioritizing tasks.
+
+
+https://miro.com/app/board/uXjVK8LWc1A=/
